@@ -23,11 +23,13 @@ public class PasswordCheckerApp{
         Scanner breachedScanner = new Scanner(new File(breachedFile));
         FileWriter writer = new FileWriter(outputFile);
         
+        // Adds all breached passwords into a new breachedList array
         List<String> breachedList = new ArrayList<>();
         while(breachedScanner.hasNextLine()){
             breachedList.add(breachedScanner.nextLine().trim()); 
         }
-        
+        // Turns password strings from txt file into PasswordClassifier objects 
+        // Stored in an ArrayList 
         List<PasswordClassifier> passwordList = new ArrayList<>();
         while(inputScanner.hasNextLine()){
             String pwd = inputScanner.nextLine().trim();//Found trim on W3schools it helps not count empty space in evaluating strength
