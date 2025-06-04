@@ -1,50 +1,61 @@
 /**
- * StrongPassword.java
- * Subclass of Password that checks strength and classifies it.
+ * PasswordClassifier.java
+ * Subclass of Password that checks strength score and classifies it (weak, moderate, strong, breached)
  */
-class PasswordClassifier extends Password {
-
-    public PasswordClassifier(String value) {
-        super(value);
-    }
-
+public class PasswordClassifier extends Password{
+    
     /**
-     * Calculates a score based on password rules.
+     * Constructs a PasswordClassifier object
+     * @param password string to be classified
      */
-    public int getStrengthScore() {
+    public PasswordClassifier(String password){
+        super(password);
+    }
+    
+    /**
+     * Calculates strength score based on the criteria-->
+     * (length, uppercase, lowercase, numbers, special characters)
+     * @return the strength score (0-5)
+     */
+    public int getStrengthScore(){
         int score = 0;
-
-        if (value.length() >= 8) {
+        
+        if(password.length() > 8.0){
+        score++;
+        }
+        
+        // The .matches() is from stackoverflow I 
+        if(password.matches(".*[A-Z].")){
             score++;
         }
-        if (value.matches(".*[A-Z].*")) {
+        if(password.matches(".*[a-z].*")){
             score++;
         }
-        if (value.matches(".*[a-z].*")) {
+        if(password.matches(".*[0-9].*")){
             score++;
         }
-        if (value.matches(".*[0-9].*")) {
+        if (password.matches(".*[!@#$%^&*()].*")){
             score++;
         }
-        if (value.matches(".*[!@#$%^&*()].*")) {
-            score++;
-        }
-
         return score;
     }
-
-    /**
-     * Classifies password based on strength score.
+    
+    /** 
+     * Classifies passwords from password file based on strength score
+     * @return a String: "Weak", "Moderate","Strong"
      */
-    public String classify() {
-        int score = getStrengthScore();
-
-        if (score >= 4) {
+     public String classify(){
+         int score = getStrengthScore();
+         
+         if(score >= 4){
             return "Strong";
-        } else if (score >= 2) {
+         }
+         else if(score >= 2){
             return "Moderate";
-        } else {
+         }
+         else{
             return "Weak";
-        }
-    }
-} 
+         }
+     }
+     
+}

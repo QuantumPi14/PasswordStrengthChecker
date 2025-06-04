@@ -1,15 +1,24 @@
 /**
  * Password.java
- * Base class that stores a password string.
+ * Base class that stores a password string
  */
 public class Password {
-    protected String value;
+    public String password;
 
-    public Password(String value) {
-        this.value = value;
+    /**
+     * Constructs a Password object
+     * @param is the password string
+     */ 
+    public Password(String password){
+        this.password = password;
     }
-
-    public String getValue() {
-        return value;
+    
+    /**
+     * Gets the password string
+     * @return the password
+     */
+    public String getPassword(){
+        return password;
     }
-} 
+    
+}
