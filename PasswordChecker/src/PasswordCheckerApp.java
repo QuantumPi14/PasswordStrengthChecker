@@ -23,6 +23,8 @@ public class PasswordCheckerApp{
         Scanner breachedScanner = new Scanner(new File(breachedFile));
         FileWriter writer = new FileWriter(outputFile);
         
+        // New comment 
+        
         // Adds all breached passwords into a new breachedList array
         List<String> breachedList = new ArrayList<>();
         while(breachedScanner.hasNextLine()){
